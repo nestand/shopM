@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+//solved the bug with «[MainController] Target class does not exist».
+//i use {} to apply the parameter that I am going to re-use in the product page for example
+//i use {?} to make this parameter not obligatory otherwise if it's empty ERR PAGE 404
 
-Route::get('/categories', function () {
-    return view('categories');
-});
 
-Route::get('/mobiles/iphone_x_64', function () {
-    return view('product');
-});
+Route::get( '/', [ MainController::class, 'index' ] );
+Route::get( '/categories', [ MainController::class, 'categories' ] );
+Route::get( '/{category}', [ MainController::class, 'category' ] );
+Route::get( '/mobiles/{product?}', [ MainController::class, 'product' ] );
+
+
+
