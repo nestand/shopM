@@ -37,34 +37,19 @@
 
 <div class="container">
     <div class="starter-template">
+        //to get the cat name from DB + fixed the rediraction way
+        @foreach ($categories as $category)
         <div class="panel">
             {{--to make the link relative (as it was absolute)--}}
-            <a href="/mobiles">
+            <a href="/{{ $category->code }}">
                 <img src="/storage/categories/mobile.jpg">
-                <h2>Mobile phones</h2>
+                <h2>{{ $category->name }}</h2>
             </a>
             <p>
-                In this section you will find the most popular mobile phones at great prices!
+                {{ $category->description }}
             </p>
-        </div>
-        <div class="panel">
-            <a href="/portable">
-                <img src="/storage/categories/portable.jpg">
-                <h2>Portable</h2>
-            </a>
-            <p>
-                Section with portable products.
-            </p>
-        </div>
-        <div class="panel">
-            <a href="/appliances">
-                <img src="/storage/categories/appliance.jpg">
-                <h2>Appliance</h2>
-            </a>
-            <p>
-                Section with appliance products.
-            </p>
-        </div>
+        </div>   
+        @endforeach
     </div>
 </div>
 </body>
