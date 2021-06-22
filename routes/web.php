@@ -19,10 +19,10 @@ use App\Http\Controllers\MainController;
 //i use {?} to make this parameter not obligatory otherwise if it's empty ERR PAGE 404
 
 
-Route::get( '/', [ MainController::class, 'index' ] );
-Route::get( '/categories', [ MainController::class, 'categories' ] );
-Route::get( '/{category}', [ MainController::class, 'category' ] );
-Route::get( '/mobiles/{product?}', [ MainController::class, 'product' ] );
+Route::get( '/', [ MainController::class, 'index' ])->name('index');
+Route::get( '/categories', [ MainController::class, 'categories' ])->name('categories');
+Route::get( '/{category}', [ MainController::class, 'category' ])->name('category');
+Route::get( '/mobiles/{product?}', [ MainController::class, 'product' ])->name('product');
 
 
 
