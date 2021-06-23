@@ -23,9 +23,14 @@
         <p>
             {{ $category->description }}
         </p>
+        <p>
+            {{--function count to get the total number of the products for a category in DB--}}
+            Number of products: {{$category->products->count()}}.
+        </p>
         <div class="row">
             {{-- to apply the view of the template 'card' and fix undefined var: product--}}
-            @foreach($products as $product)
+            {{--to apply the cat filter for every product--}}
+            @foreach($category->products as $product)
                 @include('card', compact($product))
             @endforeach
         </div>

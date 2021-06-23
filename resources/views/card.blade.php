@@ -7,9 +7,8 @@
             <p>{{$product->price}} $.</p>
             <p>
                 <a href="/basket/1/add" class="btn btn-primary" role="button">In cart</a>
-               {{$product->getCategory()->name}}
-                   <a href="/mobiles/iphone_x_64" class="btn btn-default"
-                   role="button">More details</a>
+                {{--to generate the link to a product page--}}
+                <a href="{{ route('product', [$product->category->code, $product->code]) }}" class="btn btn-default" role="button">More details</a>
             </p>
         </div>
     </div>

@@ -33,11 +33,8 @@ class MainController extends Controller
         $category = Category::where('code', $code)->first();
         //dump($category);
 
-        //fix undefined variable: product (View: C:\OpenServer\domains\shopM\resources\views\card.blade.php)->$products=Product::get();
-        //to filter by category -> where()...
-        $products=Product::where('category_id', $category->id)->get();
         //The compact() function creates an array from variables and their values.
-        return view('category', compact('category', 'products'));
+        return view('category', compact('category'));
     }
 
     public function product($product = null)

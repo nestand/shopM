@@ -12,6 +12,9 @@ public function getCategory(){
     //$category = Category::where('id', $this->category_id)->first();
     //dd($category);
     return Category::find($this->category_id);
-
+}
+//for the eloquent relation, many-to-many
+public function category(){
+    return $this->belongsTo(Category::class);
 }
 }
