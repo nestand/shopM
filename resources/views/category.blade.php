@@ -9,9 +9,9 @@
         <h1>
             {{-- show the cat name --}}
             {{ $category->name }}
-                       
+
             {{--if loop to change the cat name--}}
-            
+
             {{-- @if($category == 'mobile')
                 Mobile phones
             @elseif($category == 'portable')
@@ -24,8 +24,10 @@
             {{ $category->description }}
         </p>
         <div class="row">
-            {{-- to apply the view of the template 'card' --}}
-            @include('card')
+            {{-- to apply the view of the template 'card' and fix undefined var: product--}}
+            @foreach($products as $product)
+                @include('card', compact($product))
+            @endforeach
         </div>
     </div>
 @endsection

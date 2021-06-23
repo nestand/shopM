@@ -10,7 +10,10 @@
 
         <div class="row">
            {{-- to apply the view of the template 'card' --}}
-            @include('card')
+
+            @foreach($products as $product)
+            @include('card', compact($product))
+                @endforeach
         </div>
     </div>
 @endsection
