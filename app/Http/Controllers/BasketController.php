@@ -8,17 +8,18 @@ use Illuminate\Http\Request;
 class BasketController extends Controller
 {
     // the cart
+    //compact(): Undefined variable: order fixed by putting if (!is_null) for orderId.
     public function basket()
     {
         $orderId=session('orderId');
+        if (!is_null($orderId)){
+            $order=Order::findOrFail($orderId);
+        }
         return view('basket', compact('order'));
     }
     public function basketPlace()
     {
         return view('order');
-        if (!is_null($orderId)){
-            $order=findOrFail($orderId);
-        }
     }
     /*Fixed Method App\Http\Controllers\BasketController::basketAdd does not exist with this function.
     The session added.
