@@ -46,13 +46,5 @@ class MainController extends Controller
         //['product' => $product] is a default parameter if not ERR "Too few arguments to function"
         return view('product', ['product' => $product]);
     }
-    // the cart
-    public function basket()
-    {
-        return view('basket');
-    }
-    public function basketPlace()
-    {
-        return view('order');
-    }
+
 }
