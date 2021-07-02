@@ -17,4 +17,11 @@ public function getCategory(){
 public function category(){
     return $this->belongsTo(Category::class);
 }
+/*total price of one product if we put >1 QTY*/
+public function getPriceForCount(){
+    if (!is_null($this->pivot)){
+return $this->pivot->count * $this->price;
+    }
+    return $this->price;
+}
 }

@@ -46,12 +46,15 @@
                     </div>
                 </td>
                 <td>{{$product->price}} $.</td>
-                <td>{{$product->price}} $.</td>
+                {{--{{$product->getPriceForCount($product->pivot->count)}}
+                gives me Too few arguments to function App\Models\Product::getPriceForCount(), 0 passed
+                and exactly 1 expected so pivot was placed in Product.php--}}
+                <td>{{$product->getPriceForCount()}} $.</td>
             </tr>
             @endforeach
             <tr>
                 <td colspan="3">Total</td>
-                <td>{{--{{$product->price}}--}} $.</td>
+                <td>{{$order->getFullPrice()}} $.</td>
             </tr>
             </tbody>
         </table>

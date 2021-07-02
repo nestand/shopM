@@ -10,6 +10,7 @@ class Order extends Model
         public function products(){
         return $this->belongsToMany(Product::class)->withPivot('count')->withTimestamps();
     }
+    /*total price of all cart products*/
     public function getFullPrice(){
             $sum=0;
             foreach ($this->products as $product){
