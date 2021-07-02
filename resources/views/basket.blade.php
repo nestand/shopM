@@ -27,7 +27,7 @@
                         <img height="56px" src="">
                         {{$product->name}}                    </a>
                 </td>
-                <td><span class="badge">1</span>
+                <td><span class="badge">{{$product->pivot->count}}</span>
                     {{--form-inline -> correction for add/remove product button--}}
                     <div class="btn-group form-inline">
                         {{--adding the same product--}}

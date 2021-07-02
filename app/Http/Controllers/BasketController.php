@@ -39,15 +39,18 @@ $orderId = session('orderId');
     }else{
         $order=Order::find($orderId);
     }
-    /*for increase the "count"*/
-    if ($order->products->contains($productId)) {
-        dd('OK!');
-    }
-    dd('Dont work');
-    //to put the article in the cart and send it to the order table. TEST OK!
-    $order->products()->attach($productId);
-    //dump($order->products);
+    /*for increasing the "count"*/
+    /*look at https://laravel.com/docs/8.x/eloquent-relationships for pivot doc*/
+        if ($order->products->contains($productId)) {
+            $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
+            $pivotRow->count++;
+            $pivotRow->update();
 
+    } else {
+            //to put the article in the cart and send it to the order table. TEST OK!
+            $order->products()->attach($productId);
+            //dump($order->products);
+        }
         /*fix bug with adding products(every time it adds one at new line). The same return i put in basketRemove*/
         return redirect()->route('basket');
     }
@@ -60,7 +63,17 @@ $orderId = session('orderId');
             }
 /*removing product with detach*/
         $order = Order::find($orderId);
-        $order->products()->detach($productId);
+        if ($order->products->contains($productId)) {
+            $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
+            if ($pivotRow->count < 2) {
+                $order->products()->detach($productId);
+            } else {
+                $pivotRow->count--;
+                $pivotRow->update();
+            }
+        }
+
+
         return redirect()->route('basket');
         }
 }
