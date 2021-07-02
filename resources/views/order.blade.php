@@ -9,7 +9,8 @@
     <h1>Confirm the order</h1>
     <div class="container">
         <div class="row justify-content-center">
-            <p>Total: <b>456$.</b></p>
+            {{--fixed total price. Look at BasketController -> basketPlace and Order.php--}}
+            <p>Total: <b>{{$order->getFullPrice()}} $.</b></p>
             <form action="#" method="POST">
                 <div>
                     <p>Please enter your name to let our managers contact you for the order confirmation</p>

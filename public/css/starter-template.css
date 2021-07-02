@@ -14,3 +14,8 @@ table {
 div.thumbnail img {
     max-height: 200px;
 }
+
+/*correction for add/remove buttons*/
+div.form-inline form{
+display:inline;
+}

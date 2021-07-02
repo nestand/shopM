@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateCreateOrdersTable extends Migration
+class UpdateOrderProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,19 @@ class UpdateCreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-
-            $table->tinyInteger('status')->default(0)->change();
-      });
+        Schema::table('order_product', function (Blueprint $table) {
+            $table->integer('count')->default(1)->after('product_id');
+        });
     }
-
-
-    /**
+        /**
      * Reverse the migrations.
      *
      * @return void
      */
     public function down()
     {
-        //
+        Schema::table('order_product', function (Blueprint $table) {
+            $table->dropColumn('count');
+        });
     }
 }

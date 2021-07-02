@@ -28,9 +28,8 @@
                         {{$product->name}}                    </a>
                 </td>
                 <td><span class="badge">1</span>
-                    <div class="btn-group">
-                        <a type="button" class="btn btn-danger" href="#"><span
-                                class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
+                    {{--form-inline -> correction for add/remove product button--}}
+                    <div class="btn-group form-inline">
                         {{--adding the same product--}}
                         {{--fixed the bug for the 'Post' method--}}
                         <form action="{{route('basket-add', $product)}}" method="POST">
@@ -38,7 +37,12 @@
                                     class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                             @csrf
                         </form>
-
+                        {{--Basket remove--}}
+                        <form action="{{route('basket-remove', $product)}}" method="POST">
+                            <button type="submit" class="btn btn-danger"><span
+                                    class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+                            @csrf
+                        </form>
                     </div>
                 </td>
                 <td>{{$product->price}} $.</td>
@@ -47,13 +51,14 @@
             @endforeach
             <tr>
                 <td colspan="3">Total</td>
-                <td>{{$product->price}} $.</td>
+                <td>{{--{{$product->price}}--}} $.</td>
             </tr>
             </tbody>
         </table>
         <br>
         <div class="btn-group pull-right" role="group">
-            <a type="button" class="btn btn-success" href="#">Proceed the payment</a>
+            {{--button direction to the proceed payment--}}
+            <a type="button" class="btn btn-success" href="{{route('basket-place')}}">Proceed the payment</a>
         </div>
     </div>
 </div>

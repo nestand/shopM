@@ -19,7 +19,13 @@ class BasketController extends Controller
     }
     public function basketPlace()
     {
-        return view('order');
+        /*fixed wrong price bug*/
+        $orderId = session('orderId');
+        if(is_null($orderId)){
+            return view('index');
+        }
+       $order = Order::find($orderId);
+        return view('order', compact('order'));
     }
     /*Fixed Method App\Http\Controllers\BasketController::basketAdd does not exist with this function.
     The session added.
@@ -33,9 +39,28 @@ $orderId = session('orderId');
     }else{
         $order=Order::find($orderId);
     }
+    /*for increase the "count"*/
+    if ($order->products->contains($productId)) {
+        dd('OK!');
+    }
+    dd('Dont work');
     //to put the article in the cart and send it to the order table. TEST OK!
     $order->products()->attach($productId);
     //dump($order->products);
-return view('basket', compact('order'));
+
+        /*fix bug with adding products(every time it adds one at new line). The same return i put in basketRemove*/
+        return redirect()->route('basket');
     }
+    /*Basket remove method*/
+    public function basketRemove($productId){
+        $orderId = session('orderId');
+        /*it shouldn't be NULL but to be on the safe side we will check it again*/
+        if (is_null($orderId)){
+            return redirect()->route('basket');
+            }
+/*removing product with detach*/
+        $order = Order::find($orderId);
+        $order->products()->detach($productId);
+        return redirect()->route('basket');
+        }
 }
