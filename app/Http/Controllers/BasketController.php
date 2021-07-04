@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class BasketController extends Controller
@@ -23,13 +24,14 @@ class BasketController extends Controller
             return redirect()->route('index');
         }
         $order = Order::find($orderId);
-        /*to save the name and phone of the client in DB*/
-        $order->name = $request->name;
-        $order->phone = $request->phone;
-        $order->status=1;
-        $order->save();
-        dd($request->all());
-return redirect()->route('index');
+        $success= $order ->saveOrder($request->name, $request->phone);
+        //flash messages for the order confirmation
+        if ($success){
+            session()->flash('success', 'Your order is under treatment');
+        }else{
+            session()->flash('warning', 'Something went wrong!');
+        }
+        return redirect()->route('index');
     }
 
     public function basketPlace()
@@ -68,7 +70,9 @@ $orderId = session('orderId');
             $order->products()->attach($productId);
             //dump($order->products);
         }
-        /*fix bug with adding products(every time it adds one at new line). The same return i put in basketRemove*/
+    $product = Product::find($productId);
+        session()->flash('success', "You are added  $product->name in the cart");
+        /*fix the bug with adding products(every time it adds one at new line). The same return i put in basketRemove*/
         return redirect()->route('basket');
     }
     /*Basket remove method*/
@@ -89,8 +93,8 @@ $orderId = session('orderId');
                 $pivotRow->update();
             }
         }
-
-
+        $product = Product::find($productId);
+        session()->flash('warning', "You are removed  $product->name from the cart");
         return redirect()->route('basket');
         }
 }

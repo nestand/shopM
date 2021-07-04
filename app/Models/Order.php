@@ -18,4 +18,19 @@ class Order extends Model
             }
             return $sum;
     }
+    public function saveOrder($name, $phone){
+        if ($this->status==0) {
+            /*to save the name and phone of the client in DB*/
+            $this->name = $name;
+            $this->phone = $phone;
+            $this->status = 1;
+            $this->save();
+            //to remove the products after proceeding the order
+            session()->forget('orderId');
+            //dd($request->all());
+            return true;
+        }else{
+            return false;
+        }
+        }
 }
