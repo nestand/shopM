@@ -1,11 +1,9 @@
 {{--dependecy of the master template--}}
-@extends ('master')
+@extends ('layouts.master')
 {{--showing the title--}}
 @section('title', 'All the categories')
 {{--getting the code to repeat--}}
 @section ('content')
-
-    <div class="starter-template">
         {{-- to get the cat name from DB + fixed the rediraction way --}}
         @foreach ($categories as $category)
         <div class="panel">
@@ -17,7 +15,6 @@
             <p>
                 {{ $category->description }}
             </p>
-        </div>   
+        </div>
         @endforeach
-    </div>
 @endsection

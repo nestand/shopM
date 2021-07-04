@@ -39,7 +39,9 @@
 
 
 <div class="container">
-   @yield('content')
-</div>
+    <div class="starter-template">
+    @yield('content')
+        <div class="starter-template">
+    </div>
 </body>
 </html>

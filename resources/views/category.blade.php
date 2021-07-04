@@ -1,11 +1,9 @@
 {{--dependecy of the master template--}}
-@extends ('master')
+@extends ('layouts.master')
 {{--showing the category title--}}
 @section('title', 'Category ' . $category->name)
 {{--getting the code to repeat--}}
 @section ('content')
-
-    <div class="starter-template">
         <h1>
             {{-- show the cat name --}}
             {{ $category->name }}
@@ -31,8 +29,7 @@
             {{-- to apply the view of the template 'card' and fix undefined var: product--}}
             {{--to apply the cat filter for every product--}}
             @foreach($category->products as $product)
-                @include('card', compact($product))
+                @include('layouts.card', compact($product))
             @endforeach
         </div>
-    </div>
 @endsection

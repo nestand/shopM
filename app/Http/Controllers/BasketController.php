@@ -15,14 +15,25 @@ class BasketController extends Controller
         if (!is_null($orderId)){
             $order=Order::findOrFail($orderId);
         }
-        return view('basket', compact('order'));
+            return view('basket', compact('order'));
     }
+    public function basketConfirm(){
+        $orderId = session('orderId');
+        if(is_null($orderId)){
+            return redirect()->route('index');
+        }
+        $order = Order::find($orderId);
+return redirect()->route('index');
+    }
+
     public function basketPlace()
     {
         /*fixed wrong price bug*/
+        /*if the price is null it's going to be redirected to the index otherwise the order is
+        going to be captured*/
         $orderId = session('orderId');
         if(is_null($orderId)){
-            return view('index');
+            return redirect()->route('index');
         }
        $order = Order::find($orderId);
         return view('order', compact('order'));

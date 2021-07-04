@@ -1,11 +1,9 @@
 {{--dependecy of the master template--}}
-@extends ('master')
+@extends ('layouts.master')
 {{--showing the title--}}
 @section('title', 'Basket')
 {{--getting the code to repeat--}}
 @section ('content')
-
-<div class="starter-template">
     <h1>Cart</h1>
     <p>Check-out and pay</p>
     <div class="panel">
@@ -64,5 +62,4 @@
             <a type="button" class="btn btn-success" href="{{route('basket-place')}}">Proceed the payment</a>
         </div>
     </div>
-</div>
 @endsection

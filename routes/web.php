@@ -33,5 +33,6 @@ Route::get( '/mobiles/{product?}', [MainController::class, 'product'])->name('pr
 Route::get( '/basket/place', [BasketController::class, 'basketPlace'])->name('basket-place');
 Route::post('/basket/add/{id}', [BasketController::class, 'basketAdd'])->name('basket-add');
 Route::post('/basket/remove/{id}', [BasketController::class, 'basketRemove'])->name('basket-remove');
+Route::post( '/basket/place', [BasketController::class, 'basketConfirm'])->name('basket-confirm');
 
 
