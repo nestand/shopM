@@ -17,12 +17,18 @@ class BasketController extends Controller
         }
             return view('basket', compact('order'));
     }
-    public function basketConfirm(){
+    public function basketConfirm(Request $request){
         $orderId = session('orderId');
         if(is_null($orderId)){
             return redirect()->route('index');
         }
         $order = Order::find($orderId);
+        /*to save the name and phone of the client in DB*/
+        $order->name = $request->name;
+        $order->phone = $request->phone;
+        $order->status=1;
+        $order->save();
+        dd($request->all());
 return redirect()->route('index');
     }
 

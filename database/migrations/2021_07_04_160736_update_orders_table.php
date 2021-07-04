@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateCreateOrdersTable extends Migration
+class UpdateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,10 @@ class UpdateCreateOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-
-            $table->tinyInteger('status')->default(0)->change();
-      });
+            $table->string('name')->nullable()->after('status');
+        });
     }
+
 
     /**
      * Reverse the migrations.
