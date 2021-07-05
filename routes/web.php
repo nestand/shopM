@@ -3,6 +3,7 @@
 use App\Http\Controllers\BasketController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -36,3 +37,6 @@ Route::post('/basket/remove/{id}', [BasketController::class, 'basketRemove'])->n
 Route::post( '/basket/place', [BasketController::class, 'basketConfirm'])->name('basket-confirm');
 
 
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

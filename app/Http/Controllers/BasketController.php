@@ -44,6 +44,7 @@ class BasketController extends Controller
             return redirect()->route('index');
         }
        $order = Order::find($orderId);
+        //compact() — Create array containing variables and their values.
         return view('order', compact('order'));
     }
     /*Fixed Method App\Http\Controllers\BasketController::basketAdd does not exist with this function.
