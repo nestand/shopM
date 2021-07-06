@@ -18,26 +18,30 @@
     <div class="container">
         <div class="navbar-header">
             {{-- index page redirection added --}}
-            {{--{{ route('index') }} returns Route [index] not defined --}}
-            <a class="navbar-brand" href="{{ route('index') }}">Highshop Mini</a>
+            {{--{{ route('index') replaced with / }} returns Route [index] not defined --}}
+            <a class="navbar-brand" href="/">Highshop Mini</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li  class="active" ><a href="{{ route('index') }}">All products</a></li>
+                <li  class="active" ><a href="/">All products</a></li>
                 <li ><a href="{{ route('categories') }}">Categories</a>
                 </li>
                 <li ><a href="{{ route('basket') }}">In cart</a></li>
-                <li><a href="{{ route('index') }}">Reset all</a></li>
+                <li><a href="/">Reset all</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/admin/home">Admin panel</a></li>
+                @guest
+                    <li><a href="{{route('login')}}">Admin panel</a></li>
+                @endguest
+                @auth
+                <li><a href={{route('login')}}>Admin panel</a></li>
+                <li><a href="{{route('get-logout')}}">Logout</a></li>
+                @endauth
             </ul>
         </div>
     </div>
 </nav>
-
-
 <div class="container">
     <div class="starter-template">
         @if(session()->has('success'))
@@ -49,5 +53,7 @@
     @yield('content')
         <div class="starter-template">
     </div>
+</div>
+</div>
 </body>
 </html>

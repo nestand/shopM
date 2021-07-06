@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'layouts' => 'users',
     ],
 
     /*
@@ -92,7 +92,7 @@ return [
     |
     */
 
-    'passwords' => [
+    'layouts' => [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',

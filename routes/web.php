@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\BasketController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 
 /*
@@ -26,7 +28,17 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'App\Http\Controllers\Api\MainController@index')->name('index');
 */
 
-Route::get( '/', [MainController::class, 'index'])->name('index');
+Auth::routes([
+    'reset'=>false,
+    'confirm'=>false,
+    'verify'=>false,
+]);
+Route::get('/logout', [LoginController::class, 'logout'])->name('get-logout');
+Route::get('/home', [HomeController::class, 'authorize'])->name('home');
+
+//Route::get('/logout', [Controller::class, 'logout'])->name('get-logout');
+
+Route::get( '/', [MainController::class, 'index'])->name(' index');
 Route::get( '/categories', [MainController::class, 'categories'])->name('categories');
 Route::get( '/basket', [BasketController::class, 'basket'])->name('basket');
 Route::get( '/{category}', [MainController::class, 'category'])->name('category');
@@ -38,5 +50,4 @@ Route::post( '/basket/place', [BasketController::class, 'basketConfirm'])->name(
 
 
 
-Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
