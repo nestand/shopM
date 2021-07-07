@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
@@ -35,12 +36,16 @@ Auth::routes([
 ]);
 Route::get('/logout', [LoginController::class, 'logout'])->name('get-logout');
 
-// V1 middleware to a single route
+// V1 middleware to every single route
 //Route::get('/orders', [HomeController::class, 'index'])->middleware('auth');
 
 //V2 middleware to a group of the routes
-Route::group(['middleware' => 'auth'], function(){
-    Route::get('/orders', [HomeController::class, 'index'])->name('home');
+Route::group(
+
+    ['middleware' => 'auth',
+    'namespace'=>'Admin',],
+    function(){
+    Route::get('/orders', [OrderController::class, 'index'])->name('home');
 });
 
 //Route::get('/logout', [Controller::class, 'logout'])->name('get-logout');

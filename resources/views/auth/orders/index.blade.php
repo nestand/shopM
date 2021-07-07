@@ -29,11 +29,13 @@
                 </th>
             </tr>
 
-            <!--{{--@foreach($orders as $order)
+            <!--compact('orders') from OrderController-->
+            @foreach($orders as $order)
+
                 <tr>
                     <td>{{ $order->id}}</td>
-                    <td>{{ $order->name }}</td>
-                    <td>{{ $order->phone }}</td>
+                    <td>{{ $order->user}}</td>
+                    <td>{{ $order->phone}}</td>
                     <td>{{ $order->created_at->format('H:i d/m/Y') }}</td>
                     <td>{{ $order->getFullPrice() }} $.</td>
                     <td>
@@ -43,7 +45,8 @@
                         </div>
                     </td>
                 </tr>
-            @endforeach--}}-->
+            @endforeach
+
             </tbody>
         </table>
     </div>

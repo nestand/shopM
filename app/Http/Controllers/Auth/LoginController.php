@@ -24,9 +24,8 @@ class LoginController extends Controller
     //redirection to the admin panel
     protected function redirectTo()
     {
-        return route( 'home');
+        return route('home');
     }
-
     /**
      * Create a new controller instance.
      *

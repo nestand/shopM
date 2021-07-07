@@ -13,6 +13,7 @@ class BasketController extends Controller
     public function basket()
     {
         $orderId=session('orderId');
+
         if (!is_null($orderId)){
             $order=Order::findOrFail($orderId);
         }

@@ -2,13 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
+
 
 class Order extends Model
 {
         public function products(){
         return $this->belongsToMany(Product::class)->withPivot('count')->withTimestamps();
+    }
+    //creating user class for auth.index.blade.php
+    public function user(){
+            return $this->belongsTo(User::class);
     }
     /*total price of all cart products*/
     public function getFullPrice(){

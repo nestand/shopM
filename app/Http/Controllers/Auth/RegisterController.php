@@ -27,7 +27,7 @@ class RegisterController extends Controller
     //redirection to the admin panel
     protected function redirectTo()
     {
-        return route( 'home');
+        return route('home');
     }
 
     /**
