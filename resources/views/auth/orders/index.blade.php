@@ -34,7 +34,7 @@
 
                 <tr>
                     <td>{{ $order->id}}</td>
-                    <td>{{ $order->user}}</td>
+                    <td>{{ $order->name}}</td>
                     <td>{{ $order->phone}}</td>
                     <td>{{ $order->created_at->format('H:i d/m/Y') }}</td>
                     <td>{{ $order->getFullPrice() }} $.</td>

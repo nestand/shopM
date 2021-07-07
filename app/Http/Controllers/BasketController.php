@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
 {
@@ -16,13 +17,14 @@ class BasketController extends Controller
 
         if (!is_null($orderId)){
             $order=Order::findOrFail($orderId);
-        }
+
             return view('basket', compact('order'));
+        }
     }
     public function basketConfirm(Request $request){
         $orderId = session('orderId');
         if(is_null($orderId)){
-            return redirect()->route('index');
+            return redirect()->route('home');
         }
         $order = Order::find($orderId);
         $success= $order ->saveOrder($request->name, $request->phone);
@@ -32,7 +34,7 @@ class BasketController extends Controller
         }else{
             session()->flash('warning', 'Something went wrong!');
         }
-        return redirect()->route('index');
+        return redirect()->route('home');
     }
 
     public function basketPlace()
@@ -42,7 +44,7 @@ class BasketController extends Controller
         going to be captured*/
         $orderId = session('orderId');
         if(is_null($orderId)){
-            return redirect()->route('index');
+            return redirect()->route('home');
         }
        $order = Order::find($orderId);
         //compact() — Create array containing variables and their values.
@@ -72,6 +74,12 @@ $orderId = session('orderId');
             $order->products()->attach($productId);
             //dump($order->products);
         }
+
+   /*add user ID to the order*/
+    if (Auth::check()){
+        $order->user_id=Auth::id();
+        $order->save();
+    }
     $product = Product::find($productId);
         session()->flash('success', "You are added  $product->name in the cart");
         /*fix the bug with adding products(every time it adds one at new line). The same return i put in basketRemove*/
