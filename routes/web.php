@@ -34,7 +34,14 @@ Auth::routes([
     'verify'=>false,
 ]);
 Route::get('/logout', [LoginController::class, 'logout'])->name('get-logout');
-Route::get('/home', [HomeController::class, 'authorize'])->name('home');
+
+// V1 middleware to a single route
+//Route::get('/orders', [HomeController::class, 'index'])->middleware('auth');
+
+//V2 middleware to a group of the routes
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/orders', [HomeController::class, 'index'])->name('home');
+});
 
 //Route::get('/logout', [Controller::class, 'logout'])->name('get-logout');
 

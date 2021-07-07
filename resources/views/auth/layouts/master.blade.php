@@ -5,66 +5,90 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="ksSuYKnA4EytAfis4gZ1z98TxO8rZRWX5zGgktba">
-
     <title>Admin panel: @yield('title')</title>
+
+    <!-- Scripts -->
+<!--
+    <script src="/js/app.js" defer></script>
+-->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
-    <!--JS script-->
-    <link href="resources/js/app.js" rel="stylesheet">
-    <link href="resources/js/bootstrap.js" rel="stylesheet">
     <!-- Styles -->
+    <link href="/css/app.css" rel="stylesheet">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/admin.css" rel="stylesheet">
     <link href="/css/admin.css" rel="stylesheet">
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar- navbar-expand-md navbar-light navbar-laravel">
+    <nav class="navbar navbar-default navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
-            <a class="navbar-brand" href="/">Return to the main
+            <!--main page redirection-->
+            <a class="navbar-brand" href="/">
+                Return to the main
             </a>
 
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li  class="active" ><a href="/">All products</a></li>
-                    <li ><a href="{{ route('categories') }}">Categories</a>
-                    </li>
-                    <li ><a href="{{ route('basket') }}">In cart</a></li>
-                    <li><a href="/">Reset all</a></li>
-                </ul>
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="/">All products</a></li>
+                            <li><a href="{{ route('categories') }}">Categories</a>
+                            </li>
+                            <!--the route for the orders need to be added!-->
+                            <li><a href="#">Orders</a></li>
+                        </ul>
+                        <!--Guest access-->
+                        @guest
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">Enter</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                </li>
+                            </ul>
+                        @endguest
+                    <!--Authorized access-->
+                        @auth
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                       data-toggle="dropdown"
+                                       aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Admin
+                                    </a>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
-                    </li>
-                </ul>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <!--JS added to onclick to block the browser standart behavior-->
+                                        <a class="dropdown-item" href="{{ route('logout')}}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Exit
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout')}}" method="POST"
+                                              style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        @endauth
+                    </div>
             </div>
-        </div>
     </nav>
 
     <div class="py-4">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">@yield('title')</div>
-
-                        <div class="card-body">
-                            @yield('content')
-                        </div>
-                    </div>
-                </div>
+                @yield('content')
             </div>
         </div>
     </div>
 </div>
 </body>
 </html>
+

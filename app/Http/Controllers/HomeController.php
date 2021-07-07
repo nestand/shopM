@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        dd('Home page');
+        return view('auth.orders.index');
     }
 
     public function __construct()
