@@ -75,7 +75,7 @@ $orderId = session('orderId');
             //dump($order->products);
         }
 
-   /*add user ID to the order*/
+   /*to save user ID to the order*/
     if (Auth::check()){
         $order->user_id=Auth::id();
         $order->save();

@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\BasketController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
@@ -43,12 +43,21 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('get-logout');
 Route::group(
 
     ['middleware' => 'auth',
-    'namespace'=>'Admin',],
-    function(){
+    'namespace'=>'Admin',
+        'prefix'=>'admin'
+    ],function(){
         //route for isAdmin checker
         Route::group(['middleware'=>'is_admin'], function (){
             Route::get('/orders', [OrderController::class, 'index'])->name('home');
         });
+
+    });
+
+//REST Categories -> Admin panel
+Route::group([
+    'prefix'=>'admin'
+],function(){
+Route::resource('categories', CategoryController::class);
 });
 
 //Route::get('/logout', [Controller::class, 'logout'])->name('get-logout');
@@ -60,6 +69,8 @@ Route::group([ 'prefix'=>'basket'], function(){
     Route::post('/add/{id}', [BasketController::class, 'basketAdd'])->name('basket-add');
 
     Route::group([
+
+        //function Basket not empty is in beta and not function properly
         'middleware'=>'basket_not_empty',
 
     ], function(){
@@ -73,7 +84,7 @@ Route::group([ 'prefix'=>'basket'], function(){
 
 
 Route::get( '/{category}', [MainController::class, 'category'])->name('category');
-Route::get( '/mobiles/{product?}', [MainController::class, 'product'])->name('product');
+Route::get( '/{category}/{product?}', [MainController::class, 'product'])->name('product');
 
 
 

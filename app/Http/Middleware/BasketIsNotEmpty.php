@@ -11,21 +11,25 @@ class BasketIsNotEmpty
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param Request $request
+     * @param Closure $next
      * @return mixed
      */
+
+
     public function handle(Request $request, Closure $next)
     {
         /*redirection to index if the cart is empty*/
-        $orderId=session('orderId');
+        $orderId = session('orderId');
+
         if (!is_null($orderId)) {
-            $order=Order::findOrFail($orderId);
-            if ($order->product->count()==0){
-                session()->flash('warning', 'Your basket is empty!');
+            $order = Order::findOrFail($orderId);
+             if ($order->products->count() == 0) {
+                session()->flash('warning', 'Your cart is empty!');
                 return redirect()->route('index');
             }
         }
-            return $next($request);
+
+        return $next($request);
     }
 }

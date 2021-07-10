@@ -30,8 +30,8 @@ class MainController extends Controller
         (SQL: select * from `categories` where `category` is null limit 1) -> 'code' missed :)*/
 
         // to check and get if the category exists
-        $category = Category::where('code', $code)->first();
-        //dump($category);
+        $category = Category::get()->first;//where('code', $code);
+        //dd($category);
 
         //The compact() function creates an array from variables and their values.
         return view('category', compact('category'));
