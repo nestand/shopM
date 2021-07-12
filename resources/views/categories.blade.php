@@ -9,7 +9,7 @@
         <div class="panel">
             {{--to make the link relative (as it was absolute :) )--}}
             <a href="/{{ $category->code }}">
-                <img src="{{ Storage::url($category->image) }}">
+                <img height="56px" src="{{ Storage::url($category->img) }}">
                 <h2>{{ $category->name }}</h2>
             </a>
             <p>

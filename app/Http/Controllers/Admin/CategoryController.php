@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -41,10 +42,25 @@ class CategoryController extends Controller
      * @return RedirectResponse
      */
     /*save new cat function*/
-    public function store(Request $request): RedirectResponse
-    {
+    public function store (Request $request)    {
+        //to save the IMG
+        /*
+        $params = $request->all();
+        unset($params['img']);
+        if ($request->has('img')) {
+            $params['img'] = $request->file('img')->store('categories');
+        }
+        */
+
+        //old
+
+        $path=$request->file('img')->store('categories');
+        $params=$request->all();
+        $params['img']=$path;
+
+
         //get all the data from request
-        Category::create($request->all());
+        Category::create($params);
         return redirect()->route('categories.index');
     }
 
@@ -80,7 +96,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category): RedirectResponse
     {
-        $category->update($request->all());
+         //to save the IMG
+                Storage::delete($category->img);
+                $path=$request->file('img')->store('categories');
+                $params=$request->all();
+                $params['img']=$path;
+                $category->update($params);
         return redirect()->route('categories.index');
     }
 

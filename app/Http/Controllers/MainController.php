@@ -30,21 +30,29 @@ class MainController extends Controller
         (SQL: select * from `categories` where `category` is null limit 1) -> 'code' missed :)*/
 
         // to check and get if the category exists
-        $category = Category::get()->first;//where('code', $code);
+        $category = Category::where('code', $code)->first();
+        return view('category', compact('category'));
+           }
         //dd($category);
 
         //The compact() function creates an array from variables and their values.
-        return view('category', compact('category'));
-    }
 
-    public function product($product = null)
+
+    public function product($code)
     {
         //dump(request());
         //dump($product);
         //dd($product);
-
+        $products = Product::get();
+        return view('product', compact('products'));
+        //dd($product);
         //['product' => $product] is a default parameter if not ERR "Too few arguments to function"
-        return view('product', ['product' => $product]);
-    }
 
+    }
+    public function basket() {
+        return view('basket');
+    }
+    public function basketPlace() {
+        return view('order');
+    }
 }

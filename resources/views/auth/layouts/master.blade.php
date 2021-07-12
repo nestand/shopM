@@ -34,11 +34,11 @@
                 <ul class="nav navbar-nav">
                     <div id="navbar" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="/">All products</a></li>
                             <li><a href="{{ route('categories.index') }}">Categories</a>
                             </li>
-                            <!--the route for the orders need to be added!-->
-                            <li><a href="#">Orders</a></li>
+                            <li><a href="{{ route('products.index') }}">Products</a>
+                            </li>
+                            <li><a href="{{ route('home') }}">Orders</a></li>
                         </ul>
                         <!--Guest access-->
                         @guest
@@ -61,7 +61,6 @@
                 </ul>
             </div>
     </nav>
-
     <div class="py-4">
         <div class="container">
             <div class="row justify-content-center">

@@ -22,7 +22,7 @@
                 <td>
                     {{--link to the product from the cart--}}
                     <a href="{{route('product', [$product->category->code, $product->code])}}">
-                        <img height="56px" src="">
+                        <img height="56px" src="{{ Storage::url($product->img) }}">
                         {{$product->name}}                    </a>
                 </td>
                 <td><span class="badge">{{$product->pivot->count}}</span>

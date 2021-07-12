@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +23,7 @@ class CheckIsAdmin
 
 if(!$user->isAdmin()){
     session()->flash('warning', 'you are not authorized to see this content');
-    return redirect()->route('index');
+    return redirect()->route('categories');
 }        return $next($request);
     }
 }

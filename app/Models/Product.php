@@ -6,12 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-//to get the category for every product
-public function getCategory(){
+
+    // OLD VERSION! to get the category for every product
+//public function getCategory(){
     //$category = Category::where('id', $this->category_id)->first();
     //dd($category);
-    return Category::find($this->category_id);
-}
+    //return Category::find($this->category_id);
+    // }
+
+/*fix Add [_token] to fillable property to allow mass assignment on [App\Models\Category].
+in admin panel -> create new cat
+NEW VERSION*/
+
+    protected $fillable = ['name', 'code', 'price', 'category_id', 'description', 'img'];
+
 //for the eloquent relation, many-to-many
 public function category(){
     return $this->belongsTo(Category::class);

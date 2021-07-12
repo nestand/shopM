@@ -1,10 +1,10 @@
 @extends('auth.layouts.master')
 
-@section('title', 'Category ' . $category->name)
+@section('title', 'Product ' . $product->name)
 
 @section('content')
     <div class="col-md-12">
-        <h1>Cat</h1>
+        <h1>{{ $product->name }}</h1>
         <table class="table">
             <tbody>
             <tr>
@@ -17,27 +17,26 @@
             </tr>
             <tr>
                 <td>ID</td>
-                <td>{{ $category->id }}</td>
+                <td>{{ $product->id}}</td>
             </tr>
             <tr>
                 <td>Code</td>
-                <td>{{ $category->code }}</td>
+                <td>{{ $product->code }}</td>
             </tr>
             <tr>
                 <td>Name</td>
-                <td>{{ $category->name }}</td>
+                <td>{{ $product->name }}</td>
             </tr>
             <tr>
                 <td>Description</td>
-                <td>{{ $category->description }}</td>
+                <td>{{ $product->description }}</td>
             </tr>
             <tr>
                 <td>Image</td>
-                <td><img src="{{ Storage::url($category->img) }}" height="150px"></td>
-            </tr>
+                <img src="{{ Storage::url($product->img) }}" height="240px"></tr>
             <tr>
-                <td>Qty</td>
-                <td>{{ $category->products->count() }}</td>
+                <td>Category</td>
+                <td>{{ $product->category->name }}</td>
             </tr>
             </tbody>
         </table>

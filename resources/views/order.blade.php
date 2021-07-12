@@ -4,8 +4,11 @@
 @section('title', 'Check-out and pay')
 {{--getting the code to repeat--}}
 @section ('content')
-    <h1>Confirm the order</h1>
+<br>
+<br>
+
     <div class="container">
+        <h1>Confirm the order</h1>
         <div class="row justify-content-center">
             {{--fixed total price. Look at BasketController -> basketPlace and Order.php--}}
             <p>Total: <b>{{$order->getFullPrice()}} $.</b></p>
@@ -29,8 +32,6 @@
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <input type="hidden" name="_token" value="qhk4riitc1MAjlRcro8dvWchDTGkFDQ9Iacyyrkj">
                     <br>
                     @csrf
                     <input type="submit" class="btn btn-success" value="Confirm">

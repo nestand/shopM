@@ -19,3 +19,8 @@ div.thumbnail img {
 div.form-inline form{
 display:inline;
 }
+
+#confOrder h1{
+    padding: 60px;
+    margin: 160px;
+}

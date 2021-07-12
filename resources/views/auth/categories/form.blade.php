@@ -56,7 +56,7 @@
                     <label for="image" class="col-sm-2 col-form-label">Image: </label>
                     <div class="col-sm-10">
                         <label class="btn btn-default btn-file">
-                            Download <input type="file" style="display: none;" name="image" id="image">
+                            Download <input type="file" style="display: none;" name="img" id="img">
                         </label>
                     </div>
                 </div>

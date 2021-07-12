@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Highshop Mini: @yield('title')</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="css/starter-template.css" rel="stylesheet">
 </head>
 <body>
@@ -45,37 +45,6 @@
         </div>
     </div>
 </nav>
-
-<!--<nav class="navbar navbar-expand-sm navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-header">
-
-            <a class="navbar-brand" href="/">Highshop Mini</a>
-        </div>
-        <div class="collapse navbar-collapse justify-content-end" id="navbar">
-            <ul class="nav navbar-nav">
-                <li><a href="/">All products</a></li>
-                <li ><a href="{{ route('categories') }}">Categories</a>
-                </li>
-                <li ><a href="{{ route('basket') }}">In cart</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                @guest
-                    <li><a href="{{route('login')}}">Admin panel</a></li>
-                @endguest
-                @auth
-                    <li><a href={{route('login')}}>Admin panel</a></li>
-                    <li><a href="{{route('get-logout')}}">Logout</a></li>
-                @endauth
-            </ul>
-        </div>
-    </div>
-</nav>-->
 <div class="container">
     <div class="starter-template">
 @if(session()->has('success'))
