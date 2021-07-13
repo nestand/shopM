@@ -76,7 +76,7 @@
                     <label for="image" class="col-sm-2 col-form-label">Image: </label>
                     <div class="col-sm-10">
                         <label class="btn btn-default btn-file">
-                            Upload <input type="file" style="display: none;" name="img" id="img">
+                            Upload <input type="file" style="display: none;" id="img" name="img" >
                         </label>
                     </div>
                 </div>
@@ -92,4 +92,5 @@
             </div>
         </form>
     </div>
+
 @endsection

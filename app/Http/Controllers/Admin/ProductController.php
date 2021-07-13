@@ -44,8 +44,14 @@ class ProductController extends Controller
     {
         $path = $request->file('img')->store('products');
         //fix Call to a member function store() on null with img->required
-        $params = $request->all(['img'=>'required']);
+        if ($request->file('img') == null) {
+            $path = "";
+        }else{
+            $path = $request->file('img')->store('images');
+        }
+        $params = $request->all();
         $params['img'] = $path;
+        //dd($params);
         Product::create($params);
         return redirect()->route('products.index');
     }

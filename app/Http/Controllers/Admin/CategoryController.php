@@ -53,7 +53,6 @@ class CategoryController extends Controller
         */
 
         //old
-
         $path=$request->file('img')->store('categories');
         $params=$request->all();
         $params['img']=$path;
