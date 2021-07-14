@@ -38,17 +38,21 @@ class MainController extends Controller
         //The compact() function creates an array from variables and their values.
 
 
-    public function product($code)
+    public function product($category, $product)
     {
         //dump(request());
-        //dump($product);
+        dd($product);
         //dd($product);
-        $products = Product::get();
-        return view('product', compact('products'));
+
+        return view('product', ['product' => $product]);
+    }
+
+        //$products = Product::get();
+        //return view('product', compact('products'));
         //dd($product);
         //['product' => $product] is a default parameter if not ERR "Too few arguments to function"
 
-    }
+
     public function basket() {
         return view('basket');
     }

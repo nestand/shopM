@@ -16,6 +16,7 @@ class Product extends Model
 
 /*fix Add [_token] to fillable property to allow mass assignment on [App\Models\Category].
 in admin panel -> create new cat
+
 NEW VERSION*/
 
     protected $fillable = ['name', 'code', 'price', 'category_id', 'description', 'img'];

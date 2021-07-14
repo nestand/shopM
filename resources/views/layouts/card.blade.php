@@ -1,4 +1,4 @@
-{{-- the card template for any product--}}
+{{-- the card template for any product in BETA!--}}
 <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
         <img src="{{ Storage::url($product->img) }}" alt="iPhone X 64GB">
